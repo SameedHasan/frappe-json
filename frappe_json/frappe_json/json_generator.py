@@ -32,16 +32,16 @@ def create_type_definition_file(doc, method=None):
             print("App path does not exist - ignoring type generation")
             return
 
-        # Fetch Type Generation Settings Document
+        # Fetch Json generation Settings Document
         type_generation_settings = (
-            frappe.get_doc("Type Generation Settings").as_dict().type_settings
+            frappe.get_doc("Json generation Settings").as_dict().json_settings
         )
 
-        # Checking if app is existed in type generation settings
+        # Checking if app is existed in Json generation Settings
         for type_setting in type_generation_settings:
             if app_name == type_setting.app_name:
                 # Types folder is created in the app
-                type_path: Path = app_path / type_setting.app_path / "types"
+                type_path: Path = app_path / type_setting.app_path / "jsons"
 
                 if not type_path.exists():
                     type_path.mkdir()
@@ -397,17 +397,17 @@ def generate_types_for_doctype(
                 print("App path does not exist - ignoring type generation")
                 return
 
-            # Fetch Type Generation Settings Document
+            # Fetch Json generation Settings Document
             type_generation_settings = (
-                frappe.get_doc("Type Generation Settings").as_dict().type_settings
+                frappe.get_doc("Json generation Settings").as_dict().json_settings
             )
 
-            # Checking if app is existed in type generation settings
+            # Checking if app is existed in Json generation Settings
             for type_setting in type_generation_settings:
                 if app_name == type_setting.app_name:
                     # Types folder is created in the app
                     # path: Path = type_setting.app_path / "types"
-                    type_path: Path = app_path / type_setting.app_path / "types"
+                    type_path: Path = app_path / type_setting.app_path / "jsons"
                     if not type_path.exists():
                         type_path.mkdir()
 
